@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  servicebussenderreceiver:
+    image: ${DOCKER_REGISTRY-}servicebussenderreceiver
+    build:
+      context: .
+      dockerfile: ServiceBusSenderReceiver/Dockerfile

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servicebusapp
+spec:
+  replicas: 40
+  selector:
+      matchLabels:
+        app: servicebussendreceive
+  template:
+      metadata:
+        labels:
+            app: servicebussendreceive
+      spec:
+        containers:
+          - name: servicebussendreceive
+            image: democontainerregistry.azurecr.io/servicebussenderreceiver
+            imagePullPolicy: Always
+            resources:
+              requests:
+                memory: "128Mi"
+                cpu: "100m"
+              limits:
+                memory: "256Mi"
+                cpu: "200m"
+        imagePullSecrets:
+          - name: acr-auth
+      
